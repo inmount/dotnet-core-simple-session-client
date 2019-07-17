@@ -3,10 +3,22 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <RootNamespace>dotnet_core_simple_session_client</RootNamespace>
+    <Version>1.0.1907.1</Version>
+    <Authors>d.p.z software studio</Authors>
+    <Description>Simple Session Client是一套基于.Net Core，SSR开发组件的一套交互信息服务开发组件</Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="dotnet-core-ssr" Version="1.0.1907.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
