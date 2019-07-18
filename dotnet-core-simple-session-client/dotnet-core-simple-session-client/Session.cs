@@ -63,9 +63,20 @@ namespace SimpleSessionClient {
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
-        public Session(string ip, int port) {
+        /// <param name="pwd"></param>
+        public Session(string ip, int port, string pwd) {
             _client = new ssr.Client(new Host(), ip, port);
             _cache = new Dictionary<string, string>();
+
+            // 执行登录
+            _client.Sendln("PWD");
+            _client.Sendln($"${pwd.Length}");
+            _client.Send(pwd, (string data) => {
+                // 判断是否成功
+                if (data.StartsWith("-")) {
+                    throw new Exception(data.Substring(1));
+                }
+            });
         }
 
         /// <summary>
@@ -76,7 +87,9 @@ namespace SimpleSessionClient {
             bool res = false;
 
             // 发送设置指令
-            _client.Send($"SID\r\n@{sid.Length}\r\n{sid}", (string data) => {
+            _client.Sendln("SID");
+            _client.Sendln($"@{sid.Length}");
+            _client.Send(sid, (string data) => {
                 // 判断是否成功
                 if (data.StartsWith("+")) {
                     res = true;
@@ -92,7 +105,8 @@ namespace SimpleSessionClient {
         public void CreateNewSessionID() {
 
             // 发送创建指令
-            _client.Send("SID\r\n@0\r\n", (string data) => {
+            _client.Sendln("SID");
+            _client.Sendln("@0", (string data) => {
                 // 判断是否成功
                 if (data.StartsWith("+")) {
                     this.SessionID = data.Substring(1);
