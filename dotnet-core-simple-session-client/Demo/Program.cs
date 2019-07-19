@@ -4,10 +4,10 @@ namespace Demo {
     class Program {
         static void Main(string[] args) {
 
-            //string ip = "127.0.0.1";
+            string ip = "127.0.0.1";
             //string ip = "39.106.190.110";
             //string ip = "111.73.45.233";
-            string ip = "111.73.46.139";
+            //string ip = "111.73.46.139";
 
             //连接100次，测试反应速度
             for (int i = 0; i < 100; i++) {
