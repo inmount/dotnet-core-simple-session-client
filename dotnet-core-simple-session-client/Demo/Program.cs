@@ -15,13 +15,13 @@ namespace Demo {
                 using (SimpleSessionClient.Session session = new SimpleSessionClient.Session(ip, 8601, "000000")) {
 
                     // 创建一个新的交互标识
-                    //if (!session.SetSessionID("c83e7a19bf2b4c9f861465fd243696d2")) session.CreateNewSessionID();
-                    session.CreateNewSessionID();
+                    if (!session.SetSessionID("c83e7a19bf2b4c9f861465fd243696d2")) session.CreateNewSessionID();
+                    //session.CreateNewSessionID();
                     Console.WriteLine("ID " + session.SessionID);
 
-                    //Console.WriteLine("Test before " + session["Test"]);
-                    session["Test"] = Guid.NewGuid().ToString();
-                    Console.WriteLine("Test after " + session["Test"]);
+                    ////Console.WriteLine("Test before " + session["Test"]);
+                    //session["Test"] = Guid.NewGuid().ToString();
+                    //Console.WriteLine("Test after " + session["Test"]);
 
                 }
                 Console.WriteLine("Take " + (Environment.TickCount - tick) + " ms");
